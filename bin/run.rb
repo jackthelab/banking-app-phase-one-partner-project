@@ -1,3 +1,13 @@
 require_relative '../config/environment'
 
-puts "hello world"
+# Prompt -- user/bank?
+
+
+
+
+
+# Prompt -- login/signup?
+binding.pry
+puts "Thanks for trusting us."
+
+
