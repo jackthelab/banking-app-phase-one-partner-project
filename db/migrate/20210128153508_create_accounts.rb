@@ -6,8 +6,5 @@ class CreateAccounts < ActiveRecord::Migration[5.2]
       t.string :status
       t.timestamps
     end
-
-    add_foreign_key :accounts, :users
-    add_foreign_key :accounts, :banks
   end
 end
