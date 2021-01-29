@@ -64,9 +64,15 @@ else
 end
 
 if current_profile.class == Bank
-    puts "Current profile needs bank operations page"
+    # puts "Current profile needs bank operations page"
+    choose_operaton = TTY::Prompt.new
+    command = choose_operaton.select("What would you like to do?", ["See number of open accounts", "See number of current customers", "See total value of all accounts", "See Accounts above $10,000", "Close Account"])
+    puts "#{current_profile.username} would like to #{command}"
 else
-    puts "Current profile nees user operations page"
+    # puts "Current profile nees user operations page"
+    choose_operaton = TTY::Prompt.new
+    command = choose_operaton.select("What would you like to do?", ["See accounts", "Make a deposit", "Make a withdraw", "Open Account", "Close Account"])
+    puts "#{current_profile.username} would like to #{command}"
 end
 
 # binding.pry
