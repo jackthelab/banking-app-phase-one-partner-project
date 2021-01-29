@@ -20,8 +20,6 @@ ActiveRecord::Schema.define(version: 2021_01_28_153508) do
     t.integer "bank_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["bank_id"], name: "index_accounts_on_bank_id"
-    t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
   create_table "banks", force: :cascade do |t|
