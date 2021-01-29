@@ -3,7 +3,7 @@ class Bank < ActiveRecord::Base
     has_many :users, through: :accounts
 
     def all_accounts
-        Accounts.where("bank_id = ?", self.id)
+        Account.where("bank_id = ?", self.id)
     end
 
     def open_accounts
@@ -19,7 +19,7 @@ class Bank < ActiveRecord::Base
     end
 
     def number_of_customers
-        self.open_accounts.select { |account| account.user_id}.uniq.count
+        self.open_accounts.map { |account| account.user_id }.uniq.count
     end
 
     def total_value_of_open_accounts
@@ -30,8 +30,8 @@ class Bank < ActiveRecord::Base
         self.open_accounts.where("amount > ?", num)
     end
 
-    def close_account(customer, type)
-        account_to_close = Account.where("user_id = ? AND type = ?", customer.id, type)
+    def close_account(customer, account_type)
+        account_to_close = Account.where("user_id = ? AND account_type = ?", customer.id, account_type)[0]
         account_to_close.close(self)
     end
 
