@@ -1,6 +1,5 @@
 class Bank < ActiveRecord::Base
     has_many :accounts
-    has_many :users, :through => :accounts
 
     def accounts
         Accounts.where("bank_id = ?", self.id)

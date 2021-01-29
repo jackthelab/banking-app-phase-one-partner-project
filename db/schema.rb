@@ -10,16 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_28_173425) do
+ActiveRecord::Schema.define(version: 2021_01_28_153508) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "type"
     t.float "amount"
     t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "bank_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bank_id"], name: "index_accounts_on_bank_id"
+    t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
   create_table "banks", force: :cascade do |t|

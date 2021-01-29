@@ -4,6 +4,8 @@ class CreateAccounts < ActiveRecord::Migration[5.2]
       t.string :type
       t.float :amount
       t.string :status
+      t.belongs_to :user
+      t.belongs_to :bank
       t.timestamps
     end
   end
