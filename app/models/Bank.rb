@@ -20,7 +20,7 @@ class Bank < ActiveRecord::Base
         self.open_accounts.select { |account| account.user_id}.uniq.count
     end
 
-    def total_value_of_all_accounts
+    def total_value_of_open_accounts
         self.open_accounts.sum(:amount)
     end
 
@@ -28,8 +28,9 @@ class Bank < ActiveRecord::Base
         self.open_accounts.where("amount > ?", num)
     end
 
-    def close_account
-        # some_account.close(self)
+    def close_account(customer, type)
+        account_to_close = Account.where("user_id = ? AND type = ?", customer.id, type)
+        account_to_close.close(self)
     end
 
 end
