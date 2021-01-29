@@ -1,16 +1,16 @@
 class User < ActiveRecord::Base
     has_many :accounts
 
-    def accounts
+    def all_accounts
         Accounts.where("user_id = ?", self.id)
     end
 
     def open_accounts
-        self.accounts.where("status = ?", "open")
+        self.all_accounts.where("status = ?", "open")
     end
 
     def closed_accounts
-        self.accounts.where("status IS NOT ?", "open")
+        self.all_accounts.where("status IS NOT ?", "open")
     end
 
     def open_account_types
@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 
     def deposit(account, money)
         account.amount += money
-        "You have successfully deposited ${money}. Congrats!"
+        puts "You have successfully deposited ${money}. Congrats!"
     end
 
     def withdraw(account, money)

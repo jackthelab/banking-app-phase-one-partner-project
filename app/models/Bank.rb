@@ -1,16 +1,16 @@
 class Bank < ActiveRecord::Base
     has_many :accounts
 
-    def accounts
+    def all_accounts
         Accounts.where("bank_id = ?", self.id)
     end
 
     def open_accounts
-        self.accounts.where("status = ?", "open")
+        self.all_accounts.where("status = ?", "open")
     end
 
     def closed_accounts
-        self.accounts.where("status IS NOT ?", "open")
+        self.all_accounts.where("status IS NOT ?", "open")
     end
 
     def number_of_open_accounts

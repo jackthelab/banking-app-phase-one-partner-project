@@ -65,7 +65,7 @@ end
 
 done = false
 
-while done == false
+while done == false && current_profile != nil
 
     if current_profile.class == Bank
         # puts "Current profile needs bank operations page"
@@ -74,13 +74,19 @@ while done == false
         # puts "#{current_profile.username} would like to #{command}"
         case command
         when "See number of open accounts"
-            current_profile.number_of_open_accounts
+            puts "Number of Accounts: #{current_profile.number_of_open_accounts}"
         when "See number of customers"
-            current_profile.number_of_customers
+            puts "Number of Customers: #{current_profile.number_of_customers}"
         when "See total value of open accounts"
-            current_profile.total_value_of_open_accounts
+            puts "All Money in Open Accounts: $#{current_profile.total_value_of_open_accounts}"
         when "See accounts above $10,000"
-            current_profile.see_accounts_above(10000)
+            if current_profile.see_accounts_above(10000).count > 0
+                current_profile.see_accounts_above(1000).each do |account|
+                    puts "Account type: #{account.type}; Account amount: #{account.amount}"
+                end
+            else
+                puts "It doesn't look like you have any accounts over $10,000 right now."
+            end
         when "Close Account"
             get_user_profile = TTY::Prompt.new
             customer_username = get_user_profile.ask("What is the username for the customer on the account?", required: true)
@@ -89,6 +95,7 @@ while done == false
             account_type = get_account_type.select("Which account would you like to close?", customer.open_account_types)
 
             current_profile.close_account(customer, account_type)
+            puts "You've successfully closed the #{account_type} account for #{customer.username}."
         else
             done = true
         end
@@ -99,8 +106,8 @@ while done == false
         # puts "#{current_profile.username} would like to #{command}"
         case
         when "See accounts"
-            if current_profile.accounts.count > 0
-                current_profile.accounts.each do |account|
+            if current_profile.all_accounts.count > 0
+                current_profile.all_accounts.each do |account|
                     puts "Type: #{account.type}"
                     puts "Status: #{account.status}"
                     puts "Amount: #{account.amount}"
