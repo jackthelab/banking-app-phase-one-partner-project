@@ -6,7 +6,7 @@ ____________
 
 1 -- Banking App is a CLI project to conclude Phase One of the Flatiron School Software Engineering program.
 
-2 -- The goals were to build an app using OOP (in Ruby) principles while utilizing an ORM (ActiveRecord) while allowing users to interact outside of the terminal.
+2 -- The goals were to build an app using OOP (in Ruby) principles while utilizing an ORM (ActiveRecord) while allowing users to interact.
 
 3 -- Areas which could have been and can still be improved (when time allows):
 
