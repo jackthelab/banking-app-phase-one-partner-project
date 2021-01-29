@@ -20,7 +20,9 @@ if login_signup_choice == "Sign Up"
     new_username = create_username.ask("Please choose a username: ", required: true)
 
     create_password = TTY::Prompt.new
-    new_password = create_password.mask("Please create a password: ", required: true)
+    new_password = create_password.ask("Please create a password (min. 8 characters): ", required: true) do |t|
+        t.validate(/\A.{8,}\Z/)
+    end
 
     if entity_type == "A Bank"
         if !Bank.find_by(username: new_username)
@@ -42,7 +44,7 @@ else
     entered_username = ask_for_username.ask("What is your username? ", required: true)
 
     ask_for_password = TTY::Prompt.new
-    entered_password = ask_for_password.ask("What is your password? ", required: true)
+    entered_password = ask_for_password.mask("What is your password? ", required: true)
 
     if entity_type == "A Bank"
         if Bank.find_by(username: entered_username) && Bank.find_by(username: entered_username).password == entered_password
