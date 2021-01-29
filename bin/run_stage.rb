@@ -63,5 +63,11 @@ else
     end
 end
 
-binding.pry
-puts "Thanks for trusting us."
+if current_profile.class == Bank
+    puts "Current profile needs bank operations page"
+else
+    puts "Current profile nees user operations page"
+end
+
+# binding.pry
+# puts "Thanks for trusting us."
